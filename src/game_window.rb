@@ -16,7 +16,7 @@ class GameWindow < Gosu::Window
 	@player = Player.new(self)
 	@player.warp(320, 240)
 
-	@star_anim = Gosu::Image.new(self, 'data/graphics/coin.png', false)
+	@star_anim = Gosu::Image::load_tiles(self, 'data/graphics/coin_frame.png', 25, 25, false)
 	@stars = Array.new
   end
   
@@ -40,8 +40,6 @@ class GameWindow < Gosu::Window
     if rand(100) < 4 and @stars.size < 25 then
     	@stars.push( Star.new( @star_anim ) )
 	end
-
-	@star_anim.draw(0, 0, 0)
 
   end
   

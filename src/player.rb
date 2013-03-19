@@ -10,7 +10,7 @@ class Player
   end
 
   def collect_stars( stars )
-  	if stars.reject! { |stars| Gosu::distance(@x, @y, star.x, star.y) < 35 } then
+  	if stars.reject! { |stars| Gosu::distance(@x, @y, stars.x, stars.y) < 35 } then
   		@score+=1
   	end
   end
