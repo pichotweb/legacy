@@ -1,8 +1,18 @@
 class Player
   def initialize(window)
-    @image = Gosu::Image.new( window, "data/graphics/oldman.png", false )
+    @image = Gosu::Image.new( window, "data/graphics/neo.png", false )
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
+  end
+
+  def score
+  	@score
+  end
+
+  def collect_stars( stars )
+  	if stars.reject! { |stars| Gosu::distance(@x, @y, star.x, star.y) < 35 } then
+  		@score+=1
+  	end
   end
 
   def warp(x, y)
