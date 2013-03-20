@@ -1,6 +1,7 @@
 class Player
   def initialize(window)
-    @image = Gosu::Image.new( window, "data/graphics/neo.png", false )
+    @window = window
+    @image = Gosu::Image.new( window, "data/graphics/neo.png", true, 0 , 0, 33, 33)
     @x = @y = @vel_x = @vel_y = @angle = 0.0
     @score = 0
   end
@@ -43,6 +44,11 @@ class Player
   end
 
   def draw
-    @image.draw_rot(@x, @y, 1, @angle)
+    # @image.draw_rot(@x, @y, 1, @angle)
+    @star_anim = Gosu::Image::load_tiles(@window, 'data/graphics/neo.png', 33, 33, true)
+
+    img = @star_anim[Gosu::milliseconds / 100 % @star_anim.size];
+    img.draw(@x - img.width / 2.0, @y - img.height / 2.0,
+        ZOrder::Stars, 1, 1, 0xffffffff, :add)
   end
 end
